@@ -4,9 +4,10 @@ import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -69,6 +70,38 @@ fun SketchbookTools(
                 .size(30.dp),
             tint = MaterialTheme.colors.primary
         )
+        Box {
+            val expanded = remember { mutableStateOf(false) }
+            val widths = listOf(10f, 20f, 30f, 40f, 50f)
+            Icon(
+                imageVector = ImageVector.vectorResource(id = R.drawable.ic_line_weight),
+                contentDescription = null,
+                modifier = Modifier
+                    .clickable {
+                        expanded.value = true
+                    }
+                    .size(30.dp),
+                tint = MaterialTheme.colors.onPrimary,
+            )
+            DropdownMenu(
+                expanded = expanded.value,
+                onDismissRequest = { expanded.value = false })
+            {
+                widths.forEach { width ->
+                    DropdownMenuItem(
+                        onClick = {
+                            controller.setPaintStrokeWidth(width)
+                            expanded.value = false
+                        })
+                    {
+                        Text(
+                            text = width.toString(),
+                            color = MaterialTheme.colors.primary
+                        )
+                    }
+                }
+            }
+        }
         Image(
             bitmap = ImageBitmap.imageResource(id = R.drawable.ic_eraser),
             contentDescription = null,
