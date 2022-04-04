@@ -2,7 +2,6 @@ package com.rujirakongsomran.jc_sketchbooklib
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -18,22 +17,12 @@ fun MainScreen() {
         modifier = Modifier
             .background(Color.Black)
     ) {
-        Card(
+        SketchbookScreen(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(all = 16.dp)
-                .weight(1f),
-            elevation = 10.dp,
-        ) {
-            Sketchbook(
-                imageBitmap = ImageBitmap.imageResource(R.drawable.nomsod),
-                modifier = Modifier
-                    .wrapContentSize()
-                    .padding(all = 16.dp),
-                controller = sketchbookController,
-                backgroundColor = Color.White
-            )
-        }
+                .fillMaxSize()
+                .weight(1f, fill = false),
+            controller = sketchbookController
+        )
         PaintColorPalette(
             modifier = Modifier.padding(6.dp),
             controller = sketchbookController,
