@@ -1,22 +1,23 @@
 package com.rujirakongsomran.jc_sketchbooklib
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.unit.dp
-import io.getstream.sketchbook.*
+import io.getstream.sketchbook.ColorPickerPaletteIcon
+import io.getstream.sketchbook.PaintColorPalette
+import io.getstream.sketchbook.PaintColorPaletteTheme
+import io.getstream.sketchbook.rememberSketchbookController
 
 @Composable
 fun MainScreen() {
     val sketchbookController = rememberSketchbookController()
-    Column(
-        modifier = Modifier
-            .background(Color.Black)
-    ) {
+
+    Column {
+        PhotoPickerIcon(controller = sketchbookController)
         SketchbookScreen(
             modifier = Modifier
                 .fillMaxSize()
@@ -26,7 +27,9 @@ fun MainScreen() {
         PaintColorPalette(
             modifier = Modifier.padding(6.dp),
             controller = sketchbookController,
+            theme = PaintColorPaletteTheme(borderColor = MaterialTheme.colors.onPrimary),
             initialSelectedIndex = 3,
+            onColorSelected = { _, _ -> sketchbookController.setPaintShader(null) },
             header = {
                 ColorPickerPaletteIcon(
                     modifier = Modifier

@@ -1,13 +1,14 @@
 package com.rujirakongsomran.jc_sketchbooklib
 
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.unit.dp
 import io.getstream.sketchbook.Sketchbook
 import io.getstream.sketchbook.SketchbookController
@@ -18,13 +19,6 @@ fun SketchbookScreen(
     controller: SketchbookController
 ) {
     Box(modifier = modifier) {
-        Image(
-            bitmap = ImageBitmap.imageResource(id = R.drawable.sketchbook_bg),
-            contentDescription = null,
-            modifier = Modifier
-                .matchParentSize()
-                .padding(horizontal = 20.dp)
-        )
         Sketchbook(
             modifier = Modifier
                 .matchParentSize()
@@ -33,9 +27,10 @@ fun SketchbookScreen(
                     top = 60.dp,
                     end = 30.dp,
                     bottom = 30.dp
-                ),
+                )
+                .border(BorderStroke(2.dp, color = MaterialTheme.colors.onPrimary))
+                .background(Color.White),
             controller = controller,
-            backgroundColor = Color.White
         )
     }
 }

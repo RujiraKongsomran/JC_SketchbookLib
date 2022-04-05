@@ -97,7 +97,7 @@ fun SketchbookTools(
                     {
                         Text(
                             text = width.toString(),
-                            color = Color.DarkGray
+                            color = MaterialTheme.colors.onPrimary
                         )
                     }
                 }
@@ -126,7 +126,7 @@ fun SketchbookTools(
                         expanded.value = false
                     }
                 ) {
-                    Text(text = "Normal", color = Color.DarkGray)
+                    Text(text = "Normal", color = MaterialTheme.colors.onPrimary)
                 }
                 DropdownMenuItem(
                     onClick = {
@@ -138,7 +138,7 @@ fun SketchbookTools(
                         )
                     }
                 ) {
-                    Text(text = "Dash Effect", color = Color.DarkGray)
+                    Text(text = "Dash Effect", color = MaterialTheme.colors.onPrimary)
                 }
             }
         }
