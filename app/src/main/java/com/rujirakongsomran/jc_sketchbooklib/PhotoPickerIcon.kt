@@ -44,7 +44,7 @@ fun ColumnScope.PhotoPickerIcon(
     Box(
         modifier = Modifier
             .padding(
-                horizontal = 16.dp
+                horizontal = 14.dp
             )
             .align(Alignment.End)
     ) {

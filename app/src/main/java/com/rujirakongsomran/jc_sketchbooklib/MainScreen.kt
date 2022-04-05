@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.unit.dp
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import io.getstream.sketchbook.ColorPickerPaletteIcon
 import io.getstream.sketchbook.PaintColorPalette
 import io.getstream.sketchbook.PaintColorPaletteTheme
@@ -14,6 +15,10 @@ import io.getstream.sketchbook.rememberSketchbookController
 
 @Composable
 fun MainScreen() {
+    val systemUiController = rememberSystemUiController()
+    // hide status bar programmatically
+    systemUiController.isStatusBarVisible = false
+
     val sketchbookController = rememberSketchbookController()
 
     Column {

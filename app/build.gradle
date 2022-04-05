@@ -66,4 +66,6 @@ dependencies {
 
     // Photo Picker
     implementation("com.google.modernstorage:modernstorage-photopicker:1.0.0-alpha06")
+
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.17.0"
 }
