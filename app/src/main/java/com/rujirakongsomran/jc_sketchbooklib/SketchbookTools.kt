@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.imageResource
@@ -96,9 +97,48 @@ fun SketchbookTools(
                     {
                         Text(
                             text = width.toString(),
-                            color = MaterialTheme.colors.primary
+                            color = Color.DarkGray
                         )
                     }
+                }
+            }
+        }
+
+        Box {
+            val expanded = remember { mutableStateOf(false) }
+            Icon(
+                imageVector = ImageVector.vectorResource(id = R.drawable.ic_line_style),
+                contentDescription = null,
+                modifier = Modifier
+                    .clickable {
+                        expanded.value = true
+                    }
+                    .size(30.dp),
+                tint = MaterialTheme.colors.onPrimary
+            )
+            DropdownMenu(
+                expanded = expanded.value,
+                onDismissRequest = { expanded.value = false })
+            {
+                DropdownMenuItem(
+                    onClick = {
+                        controller.setPathEffect(PathEffect.cornerPathEffect(60f))
+                        expanded.value = false
+                    }
+                ) {
+                    Text(text = "Normal", color = Color.DarkGray)
+                }
+                DropdownMenuItem(
+                    onClick = {
+                        controller.setPathEffect(
+                            PathEffect.dashPathEffect(
+                                floatArrayOf(20f, 40f),
+                                40f
+                            )
+                        )
+                    }
+                ) {
+                    Text(text = "Dash Effect", color = Color.DarkGray)
                 }
             }
         }
